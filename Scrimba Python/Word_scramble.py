@@ -37,12 +37,24 @@
 # print(sorted(night))
 # print(sorted(tight))
 
-import random
+# import random
 
-players = ["Mara", "Devon", "Priya", "Leo"]
+# players = ["Mara", "Devon", "Priya", "Leo"]
 
-random.shuffle(players)
-print(players)
+# random.shuffle(players)
+# print(players)
 
-card_dealer = random.choice(players)
-print(f"{card_dealer} deals first.")
+# card_dealer = random.choice(players)
+# print(f"{card_dealer} deals first.")
+
+# website = " / ".join(["mysite.com", "products", "sale"])
+# print(website)
+
+# date = " - ".join(["2026", "05", "29"])
+# print(date)
+
+# cheer = " ".join(["hip", "hip", "hooray"])
+# print(cheer)
+
+# python = "".join(["p","y","t","h","o","n"])
+# print(python)
