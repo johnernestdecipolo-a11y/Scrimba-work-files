@@ -79,17 +79,126 @@
 # else: 
 #     print(f"Sorry, the word was: {word}")
 
-inventory = [
-    ("notebooks", 42),
-    ("pens", 130),
-    ("staplers", 8),
+# inventory = [
+#     ("notebooks", 42),
+#     ("pens", 130),
+#     ("staplers", 8),
+# ]
+
+# item, quantity = inventory[0]
+# print(f"{item}: {quantity} in stock")
+
+# item, quantity = inventory[1]
+# print(f"{item}: {quantity} in stock")
+
+# item, quantity = inventory[2]
+# print(f"{item}: {quantity} in stock")
+
+import random
+
+word_bank = [
+    ("standup", "Every morning, our fifteen-minute ____ meeting lasts until lunch."),
+    ("syntax", "One missing bracket, and Python hits me with a ____ error."),
+    ("debug", "I spent four hours trying to ____ my code. Turns out I was missing a comma."),
+    ("deploy", "It's Friday at 5pm, definitely the best time to ____ new code."),
+    ("bandwidth", "Sorry boss, I can't take on more work. I just don't have the ____."),
+    ("meeting", "That ninety-minute ____ could have been an email."),
+    ("deadline", "Of course we'll hit the ____, no problem! Well, within a couple of days. Maybe a week."),
+    ("backup", "We finally made a ____ of everything, the day after the laptop died."),
+    ("server", "I'm getting a 500 error, which means the ____ is down again."),
+    ("prototype", "It's just an early ____, so please ignore that clicking anywhere crashes it."),
 ]
 
-item, quantity = inventory[0]
-print(f"{item}: {quantity} in stock")
+ROUNDS = 5
+round_num = 1
+score = 0
+score_final = 5
 
-item, quantity = inventory[1]
-print(f"{item}: {quantity} in stock")
+used = []
 
-item, quantity = inventory[2]
-print(f"{item}: {quantity} in stock")
+while round_num <= ROUNDS: 
+     
+    word, hint = random.choice(word_bank)
+
+    while (word, hint) in used:
+        word, hint = random.choice(word_bank)
+
+    used.append((word,hint))
+
+    letters = list(word)
+    random.shuffle(letters)
+    scrambled_word = "".join(letters).upper()
+
+
+    print(f"Round {round_num} of {ROUNDS}:")
+    print(f"Total score:{score}/{score_final}")
+    print(f"Scrambled: {scrambled_word}")
+
+    guess = input("Guess the word (or type 'hint' / 'skip' / 'quit): ").strip().lower()
+   
+
+    if guess == "hint":
+        print()
+        print(f"Hint: {hint}")
+        print()
+        guess = input("Your guess (or 'skip'): ").strip().lower()
+
+    if guess == "quit":
+        print(f"Thanks for playing!")
+        break
+    if guess == "skip":
+        print(f"Skipped! The word was '{word}'.")
+    elif guess == word:
+        score += 1
+        print("✅ Correct!")
+    elif guess == "":
+        print("Please type your answer.")
+    else:
+        print(f"❌ Sorry, the word was '{word}'.")
+    
+    round_num += 1
+
+print(f"Final Score: {score}/{score_final}")
+
+if score == 5:
+    print(f"A score of {score}:Flawless! All tests passing, zero bugs.")
+elif score == 4:
+    print(f"Near perfect, only one failing test!")
+elif score == 3:
+    print(f"Good effort! The code runs, and that's what counts.")
+else:
+    print("Have you tried turning it off and on again?")
+
+# count = 2
+
+# while count <= 5:
+#     print(count)
+#     count += 1
+
+# PASSENGERS = 5
+# passenger_num = 1
+
+# while passenger_num <= PASSENGERS:
+#     print(f"Printing boarding pass {passenger_num} of {PASSENGERS}")
+#     passenger_num += 1
+
+# lobby = []
+
+# lobby.append("Xena")
+# lobby.append("Thor")
+# lobby.append("Merlin")
+# lobby.append("Ripley")
+# print(lobby)
+
+# entrants = ["Amara", "Diego", "Priya", "Leo", "Sofia", "Kwame"]
+# winners = ["Diego", "Sofia"]
+
+# import random
+
+# pick = random.choice(entrants)
+
+# while pick in winners:
+#     pick = random.choice(entrants)
+
+# winners.append(entrants)
+# print(f"Winner: {pick}")
