@@ -29,15 +29,26 @@
 # add_numbers(2, 3)
 # add_numbers(5, 8)
 
-import random
+# import random
 
-def scrambled_word():
+# def scrambled_word():
 
-    word = input("Enter a word: ")
-    letters = list(word)
-    random.shuffle(letters)
-    scrambled = "".join(letters)
-    return scrambled
+#     word = input("Enter a word: ")
+#     letters = list(word)
+#     random.shuffle(letters)
+#     scrambled = "".join(letters)
+#     return scrambled
 
-result = scrambled_word()
-print(result)
+# result = scrambled_word()
+# print(result)
+import math
+def slices_needed(guests):
+    print(guests*2)
+
+def pizzas_needed(slices):
+    return math.ceil (slices / 8)
+
+slice = slices_needed(10)
+pizzas = pizzas_needed(slices)
+
+print(pizzas)
