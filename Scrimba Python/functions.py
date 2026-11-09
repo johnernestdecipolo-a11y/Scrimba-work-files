@@ -100,9 +100,11 @@ def show_queue(queue):
     print()
     print(f"Current Queue: ")
     print() 
-    for singer, song in queue:
-        print(f"{singer} - {song}")
+    for i, singer in enumerate(queue):
+        name, song = singer
+        print(f"{i + 1}. {name} - {song}")
     print()
+print("Options:  add / next / remove / quit")
 
 def prompt_for_singer():
     singer = input("Singer name: ").strip().title()
@@ -112,6 +114,10 @@ def add_singer(queue):
     singer, song = prompt_for_singer()
     queue.append((singer, song))
     print(f"{singer} - {song} has been added to the list! ")
+def next_singer(queue):
+    next = queue.pop(0)
+    print(next)
+    print(queue)
 def remove_singer(queue):
     singer_to_remove = input("Who do you want to remove? ").strip().title()
     for singer, song in queue:
@@ -130,7 +136,7 @@ def run_app(queue):
     while is_running:
         show_queue(queue)
         print()
-        print("Options: add / remove / quit")
+        print("Options: add / next / remove / quit")
         command = input("> ")
 
         if command == "quit":
@@ -139,6 +145,9 @@ def run_app(queue):
 
         elif command == "add":
             add_singer(queue)
+
+        elif command == "next":
+            next_singer(queue)
 
         elif command == "remove":
             remove_singer(queue)
