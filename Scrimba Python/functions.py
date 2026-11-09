@@ -73,48 +73,78 @@
 # print(f"With tax, that comes to ${total}.")
 # print(f"Welcome, {greeting}!")
 
-# queue = [("Annie", "Dancing Queen"), ("Allen", "Country Roads")]
-# def show_queue(queue):
-#     """Print everyone currently in the queue"""
-#     print("[the queue goes here]")
-# def add_singer(queue):
-#     """Add a singer to the queue."""
-#     print("[add a singer]")
-# def remove_singer(queue):
-#     """Remove a singer to the queue"""
-#     print("[remove a singer]")
+# nominees = ["PixelPal", "TaskTanic", "SnackMap", "MoodTunes"]
 
-# def run_app(queue):
-#     print("=" * 44)
-#     print("Welcome to Sing Out: A Karaoke Queue Manager")
-#     print("=" * 44)
+# for nominee in nominees:
+#     print(f"Nominated for Best New App: {nominee}")
 
-#     is_running = True
+# print("And those are your nominees!")
 
-#     while is_running:
-#         show_queue(queue)
-#         print()
-#         print("Options: add / remove / quit")
-#         command = input("> ")
+# lineup = [
+#     ("The Wailers", "reggae", 45),
+#     ("Daft Punk", "electronic", 90),
+#     ("Adele", "pop", 60),
+#     ("Metallica", "metal", 100),
+# ]
 
-#         if command == "quit":
-#             is_running = False
-#             print("The queue is closed. Good night!")
+# for artist in lineup:
+#     band, genre, minutes = artist
 
-#         elif command == "add":
-#             add_singer(queue)
+#     if minutes >= 90:
+#         print(f"{band} ({genre}) plays a long set: {minutes} minutes")
+#     else:
+#         print(f"{band} ({genre}) plays {minutes} minutes")
 
-#         elif command == "remove":
-#             remove_singer(queue)
+queue = [("Annie", "Dancing Queen"), ("Allen", "Country Roads")]
+def show_queue(queue):
+    print()
+    print(f"Current Queue: ")
+    print() 
+    for singer, song in queue:
+        print(f"{singer} - {song}")
+    print()
 
-#         else: 
-#             print(f"Sorry, I don't know the command '{command}'")
+def prompt_for_singer():
+    singer = input("Singer name: ").strip().title()
+    song = input("Song name:").strip().title()
+    return singer, song
+def add_singer(queue):
+    singer, song = prompt_for_singer()
+    queue.append((singer, song))
+    print(f"{singer} - {song} has been added to the list! ")
+def remove_singer(queue):
+    singer_to_remove = input("Who do you want to remove? ").strip().title()
+    for singer, song in queue:
+        if singer == singer_to_remove:
+            queue.remove((singer, song))
+            print(f"{singer} - {song} has been removed from queue.")
+            return
+    print(f"There's no one named {singer_to_remove} in the queue.")
+def run_app(queue):
+    print("=" * 44)
+    print("Welcome to Sing Out: A Karaoke Queue Manager")
+    print("=" * 44)
 
-# run_app(queue)
+    is_running = True
 
-nominees = ["PixelPal", "TaskTanic", "SnackMap", "MoodTunes"]
+    while is_running:
+        show_queue(queue)
+        print()
+        print("Options: add / remove / quit")
+        command = input("> ")
 
-for nominee in nominees:
-    print(f"Nominated for Best New App: {nominee}")
+        if command == "quit":
+            is_running = False
+            print("The queue is closed. Good night!")
 
-print("And those are your nominees!")
+        elif command == "add":
+            add_singer(queue)
+
+        elif command == "remove":
+            remove_singer(queue)
+
+        else: 
+            print(f"Sorry, I don't know the command '{command}'")
+
+run_app(queue)
+
